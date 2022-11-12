@@ -1,6 +1,7 @@
 import React from 'react'
 import {useState, useEffect, useRef} from 'react';
 import { useSelector, useDispatch } from 'react-redux'
+import {motion} from "framer-motion"
 
 import CompanyContent from '../content_components/CompanyContent';
 import MusicContent from '../content_components/MusicContent';
@@ -9,12 +10,12 @@ import VideosContent from '../content_components/VideosContent';
 
 function ContentWindow() {
   
-  const contentSelected = useSelector((state) => state.selector.content)
-  const [content, setContent] = useState(contentSelected)
+  const contentSelected = useSelector((state) => state.selector)
+  const [content, setContent] = useState(contentSelected.content)
   useEffect(() => {
-    setContent(contentSelected)
-    console.log(contentSelected)
-  }, [contentSelected])
+    setContent(contentSelected.content)
+    console.log(contentSelected.content)
+  }, [contentSelected.content])
 
   const contentSelect = (cs) => {
     if(cs === 'company'){
@@ -29,11 +30,12 @@ function ContentWindow() {
   }
 
   return (
-    <div id='content-window' style={{
+    <motion.div id='content-window' style={{
+      display: contentSelected.showContent ? 'inline' : 'none',
       backgroundColor:'rgb(235, 186, 164)', 
       //margin: 'auto',
-      width: 800, 
-      height: 500,
+      width: 1000, 
+      height: 650,
       
       boxSizing: 'border-box', 
       outline: '5px ridge rgb(235, 186, 178)',
@@ -42,15 +44,17 @@ function ContentWindow() {
 
       marginLeft: 'auto',
       marginRight: 'auto',
-      marginTop: '5em' ,
+      marginTop: '8%' ,
       left: 0,
       right: 0,
 
       overflow: 'auto', 
       position: 'absolute',
+    }} initial={{scale: 0}} animate={{
+      scale: contentSelected.showContent ? 1:0
     }}>
       {contentSelect(content)}
-    </div>
+    </motion.div>
   )
 }
 
