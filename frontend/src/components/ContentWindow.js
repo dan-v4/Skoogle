@@ -44,7 +44,7 @@ function ContentWindow() {
 
       marginLeft: 'auto',
       marginRight: 'auto',
-      marginTop: '8%' ,
+      marginTop: '5%' ,
       left: 0,
       right: 0,
 

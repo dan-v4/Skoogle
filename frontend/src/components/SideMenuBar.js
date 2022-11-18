@@ -79,48 +79,66 @@ function SideMenuBar({menuList}) {
 
   return (
     <div id='sidemenubar-div' style={{
-        display: 'flex',
-        flexFlow: 'column',
-        position: 'fixed',
+        //display: 'flex',
+        //flexFlow: 'column',
+        position: 'absolute',
         width: '20%',
-        height: '80%',
+        height: '50%',
         top: '10%',
         //justifyContent: 'left',
         //alignItems: 'flex-start'
+        //alignItems: 'left',
     }}>
-         {
-        menuList.map((menu, index) => 
-          <motion.div key={menu} id={`${menu}-side-${index}`} initial={{scale: 0}} animate={{
-            //x: moveLeft ? leftXShift[index] : moveRight ? rightXShift[index] : 0,
-            scale: contentSelected.showSideMenu ? focus === menu ? 1 : 0.75: 0,
-          }} 
-          transition={{  }}
-          onClick={() => menuClicked(menu)} 
-          style={{
-            //display:  'flex',
-            position: 'relative ',
-            backgroundImage: `url(${imgSelect(menu)})`,
-            //backgroundSize: focus === menu ? '100%': '75%',
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'left',
-            width: '100%',
-            height: '100%',
-            margin: '0 0% 0 0%',
-            filter: focus === menu ? 'saturate(100%) brightness(100%)' : 'saturate(0) brightness(50%)',
-            zIndex: focus === menu ? 100:2,
-            marginLeft: '-5px',
-            //paddingTop: '-20px'
-            //float: 'left',
-            //alignSelf: 'flex-end',
-            //left: index === 0 ? '10%': index === 2 ? '-10%': 0
-            //alignSelf: 'middle'
-          }}>
-            
-          </motion.div>
-        )
+        <ul id='sidemenu-ul' style={{
+          display: 'inline-block',
+          width: '100%',
+          height: '20%',
+          margin: '0 0% 0 0%',
+          paddingLeft: '0',
+          alignItems: 'left',
+        }}>
+          {
+          menuList.map((menu, index) => 
+            <motion.li key={menu} id={`${menu}-side-${index}`} 
+            initial={{
+              scale: 0,
+              //y: menu === 'company' ? 0: -45*index
+            }} 
+            animate={{
+              x: focus === menu ? focus === 'company' ? '12%':'11%' : 0,
+              scale: contentSelected.showSideMenu ? focus === menu ? 1.25 : 1: 0,
+            }} 
+            transition={{  }}
+            onClick={() => menuClicked(menu)} 
+            style={{
+              //display:  'flex',
+              position: 'relative ',
+              backgroundImage: `url(${imgSelect(menu)})`,
+              //backgroundSize: focus === menu ? '100%': '75%',
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'left',
+              backgroundSize: 'contain',
+              width: '100%',
+              height: '100%',
+              margin: '0 0% 0 0%',
+              filter: focus === menu ? 'saturate(100%) brightness(100%)' : 'saturate(0) brightness(50%)',
+              zIndex: focus === menu ? 100:2,
+              marginLeft: '-5px',
+              
+              //paddingTop: '-20px'
+              //float: 'left',
+              //alignSelf: 'flex-end',
+              //left: index === 0 ? '10%': index === 2 ? '-10%': 0
+              //alignSelf: 'middle'
+            }}>
+              
+            </motion.li>
+          )
 
-        
-      }
+          
+          }
+
+        </ul>
     </div>
   )
 }

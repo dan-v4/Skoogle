@@ -7,8 +7,8 @@ import { useSelector, useDispatch } from 'react-redux'
 
 
 function MenuBarHolder({menuList, menuList1}) {
-    const dispatch = useDispatch()
     const contentSelected = useSelector((state) => state.selector)
+    const dispatch = useDispatch()
     const [leftPressed, setLeftPressed] = useState(false)
     const [rightPressed, setRightPressed] = useState(false)  
     const [enterPressed, setEnterPressed] = useState(false)  
@@ -36,7 +36,7 @@ function MenuBarHolder({menuList, menuList1}) {
             console.log("escape")
             }
 
-    }, [leftPressed, rightPressed, enterPressed, upPressed, downPressed, escPressed]);
+    }, [leftPressed, rightPressed, enterPressed, upPressed, downPressed, escPressed, contentSelected.showMenuBar]);
 
     useEffect(() => {
         window.addEventListener("keydown", handleUserKeyPress);
