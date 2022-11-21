@@ -31,7 +31,7 @@ const SearchBar2 = ({data, setSearchResults}) => {
         return setSearchResults([])
     }
     // make funct that takes data as input, returns data.comp/vid/mus/sk8r
-    const resultsArray = data.filter(data => whichName().toLowerCase().includes(e.target.value.toLowerCase()))
+    const resultsArray = data.filter(data => data.skaters_fname.toLowerCase().includes(e.target.value.toLowerCase()))
     console.log(resultsArray)
     if(resultsArray.length == 0){
         dispatch(setShowSearchList(0))
